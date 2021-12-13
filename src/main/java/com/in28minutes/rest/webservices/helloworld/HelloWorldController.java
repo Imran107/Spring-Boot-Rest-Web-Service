@@ -1,4 +1,4 @@
-package com.in28minutes.rest.webservices;
+package com.in28minutes.rest.webservices.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +16,13 @@ public class HelloWorldController {
 	
 	@GetMapping(path="hello-world-bean")
 	public HelloWorldBean helloWorldBean(){
-		return new HelloWorldBean("Hello World Bean");
+		return new HelloWorldBean("Hello");
 	}
 	
 	@GetMapping(path="hello-world-bean/path-variable/{name}")
 	public HelloWorldBean helloWorldBeanPathVariable(@PathVariable String name){
-		throw new RuntimeException("Something went wrong");
-		//return new HelloWorldBean(String.format("Hello World, %s", name));
+		//throw new RuntimeException("Something went wrong");
+		return new HelloWorldBean(String.format("Hello World, %s", name));
 	}
 
 }
