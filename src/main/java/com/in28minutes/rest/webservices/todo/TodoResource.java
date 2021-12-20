@@ -36,7 +36,7 @@ public class TodoResource {
 	}
 	
 	//DELETE /delete/{username}/todos/{id}
-	@DeleteMapping("delete/{username}/todos/{id}")
+	@DeleteMapping("/delete/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
 		Todo todo = service.deleteTodo(id);
 		if(todo != null){
@@ -47,17 +47,17 @@ public class TodoResource {
 	
 	//EDIT/UPDATE a Todo
 	//PUT /users/{username}/todos/{todo_id}
-	@PutMapping("/users/{username}/todos/{todo_id}")
-	public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long todo_id,
+	@PutMapping("/users/{username}/todos/{id}")
+	public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id,
 			@RequestBody Todo todo){
 		Todo updatedTodo = service.save(todo);
-		return new ResponseEntity<Todo>(updatedTodo, HttpStatus.OK);
+		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	}
 	
 	//SAVE
 	//POST /users/{username}/todos/
 	@PostMapping("/users/{username}/todos/")
-	public ResponseEntity<Void> saveTodo(@PathVariable String username, @PathVariable long todo_id,
+	public ResponseEntity<Void> saveTodo(@PathVariable String username,
 			@RequestBody Todo todo){
 		Todo createdTodo = service.save(todo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
